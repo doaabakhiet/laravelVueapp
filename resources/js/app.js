@@ -7,7 +7,14 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
 
+Vue.use(VueRouter);
+let routes = [
+    { path: '/dashboard', component: require('./components/dashboard.vue').default},
+    { path: '/profile', component: require('./components/profile.vue').default},
+    { path: '/users', component: require('./components/users.vue').default}
+  ];
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,7 +33,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+ const router = new VueRouter({
+     mode: 'history',
+    routes // short for `routes: routes`
+  })
 const app = new Vue({
     el: '#app',
+    router
+ 
 });
